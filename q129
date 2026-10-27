@@ -1,0 +1,20 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define MAX_LINE 256
+int main() {
+    FILE *fp;
+    char filename[] = "example.txt"; 
+    char buffer[MAX_LINE];
+    fp = fopen(filename, "a");
+    if (fp == NULL) {
+        printf("Error: Could not open file %s for appending.\n", filename);
+        return 1;
+    }
+    printf("Enter a new line of text to append: ");
+    if (fgets(buffer, sizeof(buffer), stdin) != NULL) {
+        fprintf(fp, "%s", buffer);
+    }
+    fclose(fp);
+    printf("Text appended successfully to %s.\n", filename);
+    return 0;
+}
